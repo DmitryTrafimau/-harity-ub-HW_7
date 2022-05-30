@@ -1,6 +1,7 @@
 print('<<<<< Добро из рук в руки >>>>>')
 
 import os
+
 os.chdir("C:\\Users\\trofi\\PycharmProjects\\untitled2\\HW_7")
 
 while True:
@@ -13,7 +14,6 @@ while True:
     with open('data.txt', 'r', encoding='utf-8') as f:
         for line in f:
             good_data = eval(line)
-
 
     print('Выберите правило приема-раздачи вещей.')
     print('Для выбора правила приема-раздачи "стэк" (LIFO) введите "1" и нажмите Enter.')
