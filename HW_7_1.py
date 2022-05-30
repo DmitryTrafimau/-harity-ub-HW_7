@@ -11,6 +11,16 @@ while True:
             v.write(repr(good_data))
 
 
+    def good_data_updater():
+        if int(good_data[0].get('amount')) > 1:
+            print('Возьмите, вот вам', good_data[0].get('name'), '\n')
+            qty = int(good_data[0].get('amount')) - 1
+            good_data[0].update({'amount': qty})
+        else:
+            print('Возьмите, вот вам', good_data[0].get('name'), '\n')
+            good_data.pop(0)
+
+
     with open('data.txt', 'r', encoding='utf-8') as f:
         for line in f:
             good_data = eval(line)
@@ -31,23 +41,10 @@ while True:
             else:
                 if STRATEGY == '1':
                     good_data.reverse()
-                    if int(good_data[0].get('amount')) > 1:
-                        print('Возьмите, вот вам', good_data[0].get('name'), '\n')
-                        qty = int(good_data[0].get('amount')) - 1
-                        good_data[0].update({'amount': qty})
-                        good_data.reverse()
-                    else:
-                        print('Возьмите, вот вам', good_data[0].get('name'), '\n')
-                        good_data.pop(0)
-                        good_data.reverse()
+                    good_data_updater()
+                    good_data.reverse()
                 elif STRATEGY == '2':
-                    if int(good_data[0].get('amount')) > 1:
-                        print('Возьмите, вот вам', good_data[0].get('name'), '\n')
-                        qty = int(good_data[0].get('amount')) - 1
-                        good_data[0].update({'amount': qty})
-                    else:
-                        print('Возьмите, вот вам', good_data[0].get('name'), '\n')
-                        good_data.pop(0)
+                    good_data_updater()
         good_data_writer()
     else:
         print('Правило приема-раздачи вещей не выбрано.\n')
